@@ -156,34 +156,34 @@ describe('Google Login', () => {
       expect(button.type()).toEqual('button')
     })
   })
-  describe('With handles custom tag prop', () => {
-    const tag = 'div'
+  // describe('With handles custom tag prop', () => {
+  //   const tag = 'div'
 
-    const props = {
-      onSuccess() {},
-      onFailure() {},
-      clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
-      tag
-    }
+  //   const props = {
+  //     onSuccess() {},
+  //     onFailure() {},
+  //     clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
+  //     tag
+  //   }
 
-    test('render the button', () => {
-      const component = create(<GoogleLogin {...props} />)
-      const tree = component.toJSON()
-      expect(tree).toMatchSnapshot()
-    })
+  //   test('render the button', () => {
+  //     const component = create(<GoogleLogin {...props} />)
+  //     const tree = component.toJSON()
+  //     expect(tree).toMatchSnapshot()
+  //   })
 
-    const button = shallow(<GoogleLogin {...props} />)
+  //   const button = shallow(<GoogleLogin {...props} />)
 
-    test('does not have a class attr', () => {
-      expect(button.prop('className')).toEqual(undefined)
-    })
+  //   test('does not have a class attr', () => {
+  //     expect(button.prop('className')).toEqual(undefined)
+  //   })
 
-    test('has inline styles', () => {
-      expect(button.prop('style')).toMatchSnapshot()
-    })
+  //   test('has inline styles', () => {
+  //     expect(button.prop('style')).toMatchSnapshot()
+  //   })
 
-    test('displays a button element when tag prop is not set', () => {
-      expect(button.type()).toEqual(tag)
-    })
-  })
+  //   test('displays a button element when tag prop is not set', () => {
+  //     expect(button.type()).toEqual(tag)
+  //   })
+  // })
 })
