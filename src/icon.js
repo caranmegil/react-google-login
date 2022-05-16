@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default ({ active }) => (
-  <div style={{ marginRight: 10, background: active ? '#eee' : '#fff', padding: 10, borderRadius: 2 }}>
+export default () => (
+  <div style={{ marginRight: 10, background: '#eee', padding: 10, borderRadius: 2 }}>
     <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg">
       <g fill="#000" fillRule="evenodd">
         <path

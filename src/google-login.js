@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import useGoogleLogin from './use-google-login'
-import ButtonContent from './button-content'
 import Icon from './icon'
 
 const GoogleLogin = props => {
@@ -16,10 +15,8 @@ const GoogleLogin = props => {
     className,
     disabledStyle,
     buttonText,
-    children,
     render,
     theme,
-    icon,
     disabled: disabledProp,
     clientId,
     cookiePolicy,
@@ -35,7 +32,9 @@ const GoogleLogin = props => {
     accessType,
     responseType,
     jsSrc,
-    prompt
+    prompt,
+    setHovered,
+    setActive
   } = props
 
   const { signIn, loaded } = useGoogleLogin({
@@ -112,21 +111,33 @@ const GoogleLogin = props => {
     return initialStyle
   })()
 
+  const setHoveredWrap = willHover => {
+    if (setHovered) {
+      setHovered(willHover)
+    }
+  }
+
+  const setActiveWrap = willBeActive => {
+    if (setActive) {
+      setActive(willBeActive)
+    }
+  }
+
   return (
     <button
-      onMouseEnter={() => this.setHovered(true)}
+      onMouseEnter={() => setHoveredWrap(true)}
       onMouseLeave={() => {
-        this.setHovered(false)
-        this.setActive(false)
+        setHoveredWrap(false)
+        setActiveWrap(false)
       }}
-      onMouseDown={() => this.setActive(true)}
-      onMouseUp={() => this.setActive(false)}
+      onMouseDown={() => setActiveWrap(true)}
+      onMouseUp={() => setActiveWrap(false)}
       onClick={signIn}
       style={defaultStyle}
       disabled={disabled}
       className={className}
     >
-      {icon && <Icon active={active} /> ? <ButtonContent icon={icon}>{children || buttonText}</ButtonContent> : null}
+      <Icon /> {buttonText}
     </button>
   )
 }
@@ -145,7 +156,6 @@ GoogleLogin.propTypes = {
   cookiePolicy: PropTypes.string,
   loginHint: PropTypes.string,
   hostedDomain: PropTypes.string,
-  children: PropTypes.node,
   disabledStyle: PropTypes.object,
   fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,
@@ -157,8 +167,7 @@ GoogleLogin.propTypes = {
   responseType: PropTypes.string,
   accessType: PropTypes.string,
   render: PropTypes.func,
-  theme: PropTypes.string,
-  icon: PropTypes.bool
+  theme: PropTypes.string
 }
 
 GoogleLogin.defaultProps = {
@@ -173,7 +182,6 @@ GoogleLogin.defaultProps = {
   disabledStyle: {
     opacity: 0.6
   },
-  icon: true,
   theme: 'light',
   onRequest: () => {}
 }

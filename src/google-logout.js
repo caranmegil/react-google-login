@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import useGoogleLogout from './use-google-logout'
-import ButtonContent from './button-content'
 import Icon from './icon'
 
 const GoogleLogout = props => {
@@ -11,10 +10,8 @@ const GoogleLogout = props => {
     className,
     disabledStyle,
     buttonText,
-    children,
     render,
     theme,
-    icon,
     disabled: disabledProp,
     onLogoutSuccess,
     clientId,
@@ -29,7 +26,9 @@ const GoogleLogout = props => {
     uxMode,
     scope,
     accessType,
-    jsSrc
+    jsSrc,
+    setHovered,
+    setActive
   } = props
 
   const { signOut, loaded } = useGoogleLogout({
@@ -100,21 +99,33 @@ const GoogleLogout = props => {
     return initialStyle
   })()
 
+  const setHoveredWrap = willHover => {
+    if (setHovered) {
+      setHovered(willHover)
+    }
+  }
+
+  const setActiveWrap = willBeActive => {
+    if (setActive) {
+      setActive(willBeActive)
+    }
+  }
+
   return (
     <button
-      onMouseEnter={() => this.setHovered(true)}
+      onMouseEnter={() => setHoveredWrap(true)}
       onMouseLeave={() => {
-        this.setHovered(false)
-        this.setActive(false)
+        setHoveredWrap(false)
+        setActiveWrap(false)
       }}
-      onMouseDown={() => this.setActive(true)}
-      onMouseUp={() => this.setActive(false)}
+      onMouseDown={() => setActiveWrap(true)}
+      onMouseUp={() => setActiveWrap(false)}
       onClick={signOut}
       style={defaultStyle}
       disabled={disabled}
       className={className}
     >
-      {icon && <Icon active={active} /> ? <ButtonContent icon={icon}>{children || buttonText}</ButtonContent> : null}
+      <Icon /> {buttonText}
     </button>
   )
 }
@@ -123,13 +134,11 @@ GoogleLogout.propTypes = {
   jsSrc: PropTypes.string,
   buttonText: PropTypes.node,
   className: PropTypes.string,
-  children: PropTypes.node,
   disabledStyle: PropTypes.object,
   disabled: PropTypes.bool,
   onLogoutSuccess: PropTypes.func,
   render: PropTypes.func,
   theme: PropTypes.string,
-  icon: PropTypes.bool,
   onFailure: PropTypes.func,
   onScriptLoadFailure: PropTypes.func
 }
@@ -139,7 +148,6 @@ GoogleLogout.defaultProps = {
   disabledStyle: {
     opacity: 0.6
   },
-  icon: true,
   theme: 'light',
   jsSrc: 'https://apis.google.com/js/api.js'
 }
