@@ -102,10 +102,13 @@ const GoogleLogout = props => {
 
   return (
     <button
-      onMouseEnter="() => setHovered(true)"
-      onMouseLeave="() => { setHovered(false); setActive(false); }"
-      onMouseDown="() => setActive(true)"
-      onMouseUp="() => setActive(false)"
+      onMouseEnter={() => this.setHovered(true)}
+      onMouseLeave={() => {
+        this.setHovered(false)
+        this.setActive(false)
+      }}
+      onMouseDown={() => this.setActive(true)}
+      onMouseUp={() => this.setActive(false)}
       onClick={signOut}
       style={defaultStyle}
       disabled={disabled}

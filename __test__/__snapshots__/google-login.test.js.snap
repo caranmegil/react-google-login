@@ -21,10 +21,10 @@ exports[`Google Login With children, custom text, and default props render the b
 <button
   disabled={true}
   onClick={[Function]}
-  onMouseDown="() => setActive(true)"
-  onMouseEnter="() => setHovered(true)"
-  onMouseLeave="() => { setHovered(false); setActive(false); }"
-  onMouseUp="() => setActive(false)"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -80,10 +80,10 @@ exports[`Google Login With custom class and custom style render the button 1`] =
   className="test-class"
   disabled={true}
   onClick={[Function]}
-  onMouseDown="() => setActive(true)"
-  onMouseEnter="() => setHovered(true)"
-  onMouseLeave="() => { setHovered(false); setActive(false); }"
-  onMouseUp="() => setActive(false)"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -139,10 +139,10 @@ exports[`Google Login With custom class and default props render the button 1`] 
   className="test-class"
   disabled={true}
   onClick={[Function]}
-  onMouseDown="() => setActive(true)"
-  onMouseEnter="() => setHovered(true)"
-  onMouseLeave="() => { setHovered(false); setActive(false); }"
-  onMouseUp="() => setActive(false)"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -197,10 +197,10 @@ exports[`Google Login With custom text and default props render the button 1`] =
 <button
   disabled={true}
   onClick={[Function]}
-  onMouseDown="() => setActive(true)"
-  onMouseEnter="() => setHovered(true)"
-  onMouseLeave="() => { setHovered(false); setActive(false); }"
-  onMouseUp="() => setActive(false)"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -255,10 +255,10 @@ exports[`Google Login With default props render the button 1`] = `
 <button
   disabled={true}
   onClick={[Function]}
-  onMouseDown="() => setActive(true)"
-  onMouseEnter="() => setHovered(true)"
-  onMouseLeave="() => { setHovered(false); setActive(false); }"
-  onMouseUp="() => setActive(false)"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
   style={
     Object {
       "alignItems": "center",
