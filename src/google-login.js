@@ -5,16 +5,14 @@ import ButtonContent from './button-content'
 import Icon from './icon'
 
 const GoogleLogin = props => {
-  const [hovered, setHovered] = useState(false)
-  const [active, setActive] = useState(false)
+  const [hovered] = useState(false)
+  const [active] = useState(false)
   const {
     onSuccess,
     onAutoLoadFinished,
     onRequest,
     onFailure,
     onScriptLoadFailure,
-    tag,
-    type,
     className,
     disabledStyle,
     buttonText,
@@ -113,31 +111,21 @@ const GoogleLogin = props => {
 
     return initialStyle
   })()
-  const googleLoginButton = React.createElement(
-    tag,
-    {
-      onMouseEnter: () => setHovered(true),
-      onMouseLeave: () => {
-        setHovered(false)
-        setActive(false)
-      },
-      onMouseDown: () => setActive(true),
-      onMouseUp: () => setActive(false),
-      onClick: signIn,
-      style: defaultStyle,
-      type,
-      disabled,
-      className
-    },
-    [
-      icon && <Icon key={1} active={active} />,
-      <ButtonContent icon={icon} key={2}>
-        {children || buttonText}
-      </ButtonContent>
-    ]
-  )
 
-  return googleLoginButton
+  return (
+    <button
+      onMouseEnter="() => setHovered(true)"
+      onMouseLeave="() => { setHovered(false); setActive(false); }"
+      onMouseDown="() => setActive(true)"
+      onMouseUp="() => setActive(false)"
+      onClick={signIn}
+      style={defaultStyle}
+      disabled={disabled}
+      className={className}
+    >
+      {icon && <Icon active={active} /> ? <ButtonContent icon={icon}>{children || buttonText}</ButtonContent> : null}
+    </button>
+  )
 }
 
 GoogleLogin.propTypes = {
@@ -158,14 +146,12 @@ GoogleLogin.propTypes = {
   disabledStyle: PropTypes.object,
   fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,
-  tag: PropTypes.string,
   autoLoad: PropTypes.bool,
   disabled: PropTypes.bool,
   discoveryDocs: PropTypes.array,
   uxMode: PropTypes.string,
   isSignedIn: PropTypes.bool,
   responseType: PropTypes.string,
-  type: PropTypes.string,
   accessType: PropTypes.string,
   render: PropTypes.func,
   theme: PropTypes.string,
@@ -173,8 +159,6 @@ GoogleLogin.propTypes = {
 }
 
 GoogleLogin.defaultProps = {
-  type: 'button',
-  tag: 'button',
   buttonText: 'Sign in with Google',
   scope: 'profile email',
   accessType: 'online',

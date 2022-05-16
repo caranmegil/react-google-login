@@ -5,11 +5,9 @@ import ButtonContent from './button-content'
 import Icon from './icon'
 
 const GoogleLogout = props => {
-  const [hovered, setHovered] = useState(false)
-  const [active, setActive] = useState(false)
+  const [hovered] = useState(false)
+  const [active] = useState(false)
   const {
-    tag,
-    type,
     className,
     disabledStyle,
     buttonText,
@@ -101,31 +99,21 @@ const GoogleLogout = props => {
 
     return initialStyle
   })()
-  const GoogleLogoutButton = React.createElement(
-    tag,
-    {
-      onMouseEnter: () => setHovered(true),
-      onMouseLeave: () => {
-        setHovered(false)
-        setActive(false)
-      },
-      onMouseDown: () => setActive(true),
-      onMouseUp: () => setActive(false),
-      onClick: signOut,
-      style: defaultStyle,
-      type,
-      disabled,
-      className
-    },
-    [
-      icon && <Icon key={1} active={active} />,
-      <ButtonContent icon={icon} key={2}>
-        {children || buttonText}
-      </ButtonContent>
-    ]
-  )
 
-  return GoogleLogoutButton
+  return (
+    <button
+      onMouseEnter="() => setHovered(true)"
+      onMouseLeave="() => { setHovered(false); setActive(false); }"
+      onMouseDown="() => setActive(true)"
+      onMouseUp="() => setActive(false)"
+      onClick={signOut}
+      style={defaultStyle}
+      disabled={disabled}
+      className={className}
+    >
+      {icon && <Icon active={active} /> ? <ButtonContent icon={icon}>{children || buttonText}</ButtonContent> : null}
+    </button>
+  )
 }
 
 GoogleLogout.propTypes = {
@@ -134,10 +122,8 @@ GoogleLogout.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   disabledStyle: PropTypes.object,
-  tag: PropTypes.string,
   disabled: PropTypes.bool,
   onLogoutSuccess: PropTypes.func,
-  type: PropTypes.string,
   render: PropTypes.func,
   theme: PropTypes.string,
   icon: PropTypes.bool,
@@ -146,8 +132,6 @@ GoogleLogout.propTypes = {
 }
 
 GoogleLogout.defaultProps = {
-  type: 'button',
-  tag: 'button',
   buttonText: 'Logout of Google',
   disabledStyle: {
     opacity: 0.6
