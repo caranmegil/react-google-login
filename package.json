@@ -1,5 +1,5 @@
 {
-    "name": "@caranmegil/react-google-login",
+    "name": "@nerderium/react-google-login",
     "version": "1.0.0",
     "description": "A Google Login Component for React",
     "main": "dist/google-login.js",
